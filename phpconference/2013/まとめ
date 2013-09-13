@@ -1,0 +1,144 @@
+# PHPConferenceスライドメモ(スライドが公開されているトークのみ)
+
+### [PHPの今とこれから 2013]i(http://www.slideshare.net/hirokawa/php-con2013ub)
+
+- PHP5.2~5.6についての軌跡
+- PHP5.5の新機能について
+- PHP5.6とこれから
+
+### [PHPとJavaScriptにおけるオブジェクト指向を比較する](http://www.slideshare.net/kwatch/phpjavascript) 
+
+- PHPとJSのオブジェクト指向。
+- メソッド呼び出しの順序比較とか。
+- is_aポインタと_proto_
+- classはprotypeのサブセット。class = prototype + 制約。
+- クラス設計の話。「PlayerとRoleをわける」委譲。
+
+### [Inside pixiv's infrastructure〜application cluster side〜](http://www.slideshare.net/cubicdaiya/inside-pixiv-infrastructure)
+
+- pixivのインフラ構成(application cluster)
+- 開発体制
+- 言語：アプリはPHPとRails。ミドルウェアはC,C++,Lua..
+- 複数KVSで多段キャッシュしてる。KVSClientを作って楽に。
+- API作成。Nginx+Unicorn->Rails(Public API)->Nginx+PHP-FPM(Private API)->Database(MySQL)
+- xhprofでAPIの速度をプロファイル
+- tateseta。API作成用の独自フレームワーク。コントローラのロードとかするので遅い→ルーティング以外しないフレームワーク。IO・正規表現・requir・を最小にする。
+
+### [PHP初心者セッション](http://www.slideshare.net/kashioka/php2013)
+
+- 新卒研修とかに。
+
+### [PHPカンファレンス2013 モデルとの向き合い方：ドメイン駆動設計体験ワークショップ スライド](https://speakerdeck.com/hidenorigoto/phpkanhuarensu2013-moderutofalsexiang-kihe-ifang-domeinqu-dong-she-ji-ti-yan-wakusiyotupu-suraido)
+
+- DDDの基礎から～
+- DDD === "哲学"
+- モデリング→設計
+- ユビキタス言語・モデル駆動設計
+- 実践
+
+### [XML と PHP のイケナイ関係 (セキュリティ的な意味で) -Introduction of XXE attack and XML Bomb with PHP-](http://www.slideshare.net/ebihara/phpcon-2013xmlphpvuln)
+
+- 主にXML Bomb(Dos)とXXE攻撃(Entityの外部実行)とその対策のお話
+- libxml_disable_entity_loader()でsystemパスワードを読みだす例
+- ローカルファイルの漏洩。Amazonの非公開ファイルにアクセスする例。s3スキームをxmlのresourceに利用。
+- XML Bomb→PHPのメモリを大量に消費させる攻撃
+- PHP拡張の脆弱性(DOM,SimplaXML,XMLReader)
+- CentOS5系libxml2.6でXML Bombの脆弱性が...→アプリ側ではDOCTYPE,外部Entityの実行を拒否とか→XML読めないやん
+
+### [ミッションクリティカル&ハイパフォーマンスシステムにおける技術統合と運用の勘所](https://speakerdeck.com/bash0c7/phpconference2013presentation-number-phpcon2013)
+
+- AWSでアドネットワークを運用してる話
+- GrowthForecast(グラフ化) + xymon(アラート通知) + fuluentd(ログ収集)で監視
+- GrowthForecastは細かな設定とかいらない。リクエストのみ。
+
+### [Zend OPcacheの速さの秘密を探る](http://sssslide.com/www.slideshare.net/hnw/zend-opcache)
+
+- PHP5.5から導入されたZend OPcacheが何を最適化しているのかとか。
+
+### [安全なPHPアプリケーションの作り方2013](http://www.slideshare.net/ockeghem/phpconf2013)
+
+- 徳丸さんのありがたいお話
+- localstorageを利用したCSRF
+
+### [今ドキのPHPの書き方〜PHP逆引きレシピ改訂版〜](http://unsolublesugar.com/20130915/005329/)
+
+- PHP逆引きレシピ改訂版の宣伝。seleniumテストのお話とか増えたのがよさげ。
+
+### [Composerを活用したモダンなCakePHPアプリの開発手法](https://speakerdeck.com/yandod/cakephpdemoshi-eru-composerwohuo-yong-sitamodannakai-fa-shou-fa)
+
+- Vagrant + composer + nginx + cakephp
+- composerでrequire_once地獄から抜け出そう→require_onceはautoload
+
+### [さあPHPという言語処理系のソースコードを読んでみよう](http://anatoo.jp/phpcon2013/)
+
+- PHPのビルド、実行、テスト
+- GNU globalでソースコード解析
+- PHPのコード解析手順や構造など
+
+### [本当に怖いパフォーマンスが悪い実装](http://www.slideshare.net/techblogyahoo/phpcon2013-performance)
+
+- リソースの確保・開放のタイミングor回数
+-- メソッドの呼び出しごとにOpen/Closeしたりdb接続したりとか
+-- プロセス単位でオープンし、再利用
+- 大量のdefine
+-- defineは処理コスト高い
+-- iniファイルで一括定義とか
+
+### [Twilioを使ってPHPから電話をかけよう(Webサービスに新しい付加価値を)](http://www.slideshare.net/ichikaway/ichikawa-phpcon2013-twilio)
+
+- KDDIが開発した電話APIのTwilioのご紹介
+
+### [PHPerのためのデータサイエンス入門](https://speakerdeck.com/sotarok/introduction-to-data-science-for-php-users)
+
+- 大量のアプリログをPHPを用いていかに収集し、集計するかのお話
+- Treasure Dataを利用
+- 1アクセス1レコードの非正規化ログ→集計時に恩恵
+
+### [RubyからPHPへ -エンジニアのための思考移行ガイド-](https://speakerdeck.com/kuromatu/rubykaraphphe-enziniafalsetamefalsesi-kao-yi-xing-gaido)
+
+- Rails/Rubyエンジニアとして新卒→Railsがよしなにやってくれすぎる。設計とかコアを学びたい→PHPerへ→レガシーコードだらけ→PHPでフレームワーク作った
+- PHPはモチベが下がる→しかたない→視点を変える（レガシーコードが多い→設計を学ぶチャンスとか）
+
+### [「銀の弾丸などない」を考える](http://www.slideshare.net/kitoku_magic/ss-26184970)
+
+- ソフトウェア開発の本質（変わらないもの=改善が難しいもの）
+- (偶有的作業)技術（変わりやすい=改善が期待される）
+- 読んだほうがはやい。
+
+### [MySQL Adminが見たDevsの常識、DBAは非常識](http://www.slideshare.net/yoku0825/devsdba)
+
+### [15分で出来るPHPとJavaScript MVCフレームワークで作るプロトタイプ](http://twileshare.com/azlb)
+
+### [PHP 5.5ネーティブキャッシュの話](http://www.slideshare.net/hirokawa/php-55-26227359)
+
+### [フロントエンド制作向けビルドツールGruntをPHPバックエンド開発で利用する](http://www.slideshare.net/mishikawa55/2013-phpcon)
+
+### [Vagrantで作るPHP開発環境 [実践編]](http://www.slideshare.net/shin1x1/vagrant-php)
+
+### [Emergent Design with PhpSpec](http://www.slideshare.net/marcello.duarte/emergent-design-with-phpspec)
+
+### [PhpStormで始める快適なWebアプリケーション開発](http://www.slideshare.net/Vexus2/2013-0914-phpstorm?ref=http://sssslide.com/www.slideshare.net/Vexus2/2013-0914-phpstorm)
+
+### [FuelPHPで３種のProfilerを使ってみた](http://unsolublesugar.com/20130915/005329/)
+
+### [PHPアプリケーションの継続的バージョンアップ](https://speakerdeck.com/kentaro/how-to-continuously-upgrade-web-services-written-in-php)
+
+- 便利ツールはPHP5.3以上を対象としている
+- 開発スピード下がる
+    - 便利ツール使えない
+    -　レガシーコード増える
+    - 開発スピード下がる
+    - システムの老朽化
+- バージョンアップに伴うコード変更は難しくない→ｒただ、更新しつづけるのは難しい
+- そこでサーバーの構成を疎結合にする。
+- vagrantの再配布はレガシーパターンや！
+
+### [Zend Framework](http://www.slideshare.net/sasezaki/zf-26187507)
+
+### [Phalcon PHP Framework のご紹介 – PHPカンファレンス2013 フレームワークアップデート](http://www.slideshare.net/dzeyelid/introduction-phalconatphpcon)
+
+### [FuelPHP](https://docs.google.com/presentation/d/1q2s6ULmPIw3rRLS-tJR773p5xsMkTgHVJIPK_T4TgVc/pub?start=false&loop=false&delayms=3000#slide=id.p)
+
+### [PHPコアから読み解く定石の嘘ホント](http://www.slideshare.net/techblogyahoo/phpcon2013-true-orfalse)
+
+### []()
