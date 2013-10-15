@@ -12,10 +12,14 @@ int
 main(int argc, char *argv[])
 {
 	int i;
+	char str[80];
 
 	if(argc < 2) {
-		fprintf(stderr, "%s: file name not given\n ", argv[0]);
-		exit(1);
+		// fprintf(stderr, "%s: file name not given\n ", argv[0]);
+		// exit(1);
+		fgets(str,80,stdin);
+		puts(str);
+		return 0;
 	}
 	for (i = 1;i < argc; i++) {
 		do_cat(argv[i]);
