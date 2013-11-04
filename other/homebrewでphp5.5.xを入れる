@@ -1,0 +1,58 @@
+# homebrewでphp5.5.xをいれる
+
+## 手順
+
+```
+#リポジトリ追加/確認
+$brew tap homebrew/dupes
+$brew tap josegonzalez/php
+#openssl
+$brew install openssl
+$brew link openssl --force
+$exec $SHELL -l
+$openssl version
+Open SSL 1.0.1e 11 Feb 2013
+$brew install php55 
+```
+
+### Mcryptもいれる
+
+Laravelを使いたかったのでMcryptもいれた
+
+```
+# mcryptがインストールされているか確認
+$php -m | grep mcrypt
+#なければインストール
+$brew install php55-mcrypt
+#php.iniの場所を探す
+$php --ini
+Configuration File (php.ini) Path: /usr/local/etc/php/5.5
+Loaded Configuration File:         /usr/local/etc/php/5.5/php.ini
+Scan for additional .ini files in: /usr/local/etc/php/5.5/conf.d
+Additional .ini files parsed:      /usr/local/etc/php/5.5/conf.d/ext-mcrypt.ini
+# php.iniでmcrypt.soのディレクトリを指定
+$vim /usr/local/etc/php/5.5/php.ini
+mcrypt.modes_dir=/usr/local/Cellar/php55-mcrypt/5.5.0
+$php -m | grep mcrypt
+mcrypt
+```
+
+## はまったところ
+
+php5.5.xのインストール時にこんなエラーが...。
+
+```
+==> make
+      _zif_openssl_pbkdf2 in openssl.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [libs/libphp5.bundle] Error 1
+make: *** Waiting for unfinished jobs....
+
+READ THIS: https://github.com/mxcl/homebrew/wiki/troubleshooting
+```
+
+=>たぶんopensslが入ってないか古いので再インストール+古いパス消す+新しいopensslのパスを通す
+
+(参考)
+- [openssl - stack overflow](https://github.com/CHH/phpenv/issues/22)
